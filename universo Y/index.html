@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Un pequeño universo</title>
+
+</head>
+
+<body>
+
+<div class="contenido">
+
+<h1>Un pequeño universo</h1>
+
+<p>Hay personas que solo pasan...</p>
+
+<button id="warpBtn">Viajar 🚀</button>
+<div id="warpScreen"></div>
+
+<button id="musicBtn">🎵 Activar música</button>
+
+<audio id="bgMusic" loop>
+  <source src="music/cancion1.mp3" type="audio/mpeg">
+</audio>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+
+<!-- SCRIPT PARA ACTIVAR LA MÚSICA -->
+<script>
+
+const musicBtn = document.getElementById("musicBtn")
+const bgMusic = document.getElementById("bgMusic")
+
+musicBtn.addEventListener("click", () => {
+
+bgMusic.volume = 0.6
+bgMusic.play()
+
+musicBtn.innerText = "🎶 Música activada"
+
+})
+
+</script>
+
+</body>
+</html>

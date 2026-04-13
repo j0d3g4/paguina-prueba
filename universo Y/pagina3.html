@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Universo del Amor</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:black;
+overflow:hidden;
+color:white;
+}
+
+/* 🕳️ INTRO NEGRO */
+#intro{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+z-index:10;
+}
+
+#introText{
+font-size:18px;
+line-height:1.6;
+color:#ff99cc;
+white-space:pre-line;
+text-shadow:0 0 15px #ff4fb3;
+}
+
+/* 🌸 APP PRINCIPAL */
+#app{
+display:none;
+height:100vh;
+background:linear-gradient(180deg,#ffd6e7,#ffb6d9,#ffcfe6);
+text-align:center;
+padding:20px;
+}
+
+/* 💗 MENU */
+.btn{
+display:block;
+width:80%;
+max-width:300px;
+margin:15px auto;
+padding:15px;
+border:none;
+border-radius:20px;
+font-size:18px;
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(10px);
+color:#7a003c;
+font-weight:bold;
+}
+
+/* 📦 SECCIONES */
+.section{
+display:none;
+margin-top:20px;
+}
+
+.card{
+background:white;
+color:#7a003c;
+padding:20px;
+border-radius:15px;
+margin:10px;
+box-shadow:0 0 20px rgba(255,77,179,0.3);
+}
+
+/* 📸 IMAGENES */
+img{
+width:90%;
+border-radius:15px;
+margin:10px;
+}
+
+/* 🌷 TULIPANES */
+.tulip{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:fall linear infinite;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🕳️ INTRO NEGRO -->
+<div id="intro">
+<div id="introText"></div>
+</div>
+
+<!-- 🌸 APP -->
+<div id="app">
+
+<h2>💖 Bienvenida al universo del amor</h2>
+<p>Todo esto existe solo por ti…</p>
+
+<button class="btn" onclick="openRandom('frases')">💌 Frases</button>
+<button class="btn" onclick="openRandom('poemas')">🌸 Poemas</button>
+<button class="btn" onclick="openImages()">💖 Amor de mi vida</button>
+
+<!-- 💌 FRASES -->
+<div id="frases" class="section"></div>
+
+<!-- 🌸 POEMAS -->
+<div id="poemas" class="section"></div>
+
+<!-- 📸 IMAGENES -->
+<div id="images" class="section">
+<img src="https://picsum.photos/400/250?1">
+<img src="https://picsum.photos/400/250?2">
+<img src="https://picsum.photos/400/250?3">
+<img src="https://picsum.photos/400/250?4">
+</div>
+
+</div>
+
+<script>
+
+// 🕳️ TEXTO CINEMATOGRÁFICO (línea por línea)
+const lines = [
+"",
+"",
+"Un universo se está creando…",
+"",
+"🌌 Aunque el universo se destruya…",
+"volvería a crearse solo para que tú existas",
+"porque tu belleza es infinita"
+];
+
+let i = 0;
+const introText = document.getElementById("introText");
+
+function showLines(){
+if(i < lines.length){
+introText.innerText += lines[i] + "\n";
+i++;
+setTimeout(showLines, 1200);
+}else{
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("app").style.display="block";
+},2000);
+}
+}
+
+setTimeout(showLines,1000);
+
+
+// 💌 FRASES ALEATORIAS
+const frases = [
+"✨ No hay universo más bonito que tu sonrisa",
+"💫 Si existieras en otra vida, te elegiría igual",
+"💖 Eres mi casualidad favorita",
+"🌷 Todo lo bonito empieza contigo"
+];
+
+function openRandom(type){
+
+document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+
+if(type==="frases"){
+let r = frases[Math.floor(Math.random()*frases.length)];
+document.getElementById("frases").innerHTML = `<div class="card">${r}</div>`;
+document.getElementById("frases").style.display="block";
+}
+
+if(type==="poemas"){
+let poemas = [
+"Si te miro, el universo se detiene\nporque ya te encontró en mí",
+"Tu nombre es mi lugar favorito\nmi paz, mi todo"
+];
+
+let r = poemas[Math.floor(Math.random()*poemas.length)];
+document.getElementById("poemas").innerHTML = `<div class="card">${r}</div>`;
+document.getElementById("poemas").style.display="block";
+}
+}
+
+// 💖 IMÁGENES
+function openImages(){
+document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+document.getElementById("images").style.display="block";
+}
+
+// 🌷 TULIPANES
+function spawn(){
+const t=document.createElement("div");
+t.className="tulip";
+t.innerHTML="🌷";
+t.style.left=Math.random()*100+"vw";
+t.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(t);
+setTimeout(()=>t.remove(),10000);
+}
+setInterval(spawn,300);
+
+</script>
+
+</body>
+</html>
